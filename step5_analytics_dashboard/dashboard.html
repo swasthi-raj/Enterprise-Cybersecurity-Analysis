@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC Analytics Dashboard - 686.py Matplotlib Version</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 12px 12px 0 0;
+        }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        .metrics {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 3px solid #e9ecef;
+        }
+        .metric { text-align: center; }
+        .metric-value { font-size: 2em; font-weight: bold; color: #2a5298; }
+        .metric-label { font-size: 0.9em; color: #6c757d; margin-top: 5px; }
+        .content { padding: 30px; }
+        .chart-item {
+            margin-bottom: 40px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+        .chart-title {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .chart-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+        }
+        .chart-image:hover { opacity: 0.95; }
+        footer {
+            background: #343a40;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            border-radius: 0 0 12px 12px;
+        }
+        .note {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🛡️ SOC Analytics Dashboard</h1>
+            <p>Enterprise Cybersecurity Incident & Threat Intelligence Analysis</p>
+            <p style="font-size: 0.9em; margin-top: 10px;">
+                <strong>Database:</strong> soc_db | <strong>Server:</strong> AWS RDS MySQL 8.4.7
+            </p>
+            <p style="font-size: 0.85em; margin-top: 5px; opacity: 0.8;">
+                ⚡ Exact Recreation of 686.ipynb Colab Notebook with Matplotlib
+            </p>
+        </header>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">8</div>
+                <div class="metric-label">Analytical Questions</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">7</div>
+                <div class="metric-label">Visualizations</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">14</div>
+                <div class="metric-label">Database Tables</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="note">
+                <strong>📌 Interactive Dashboard:</strong> Each chart has two viewing modes:
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><strong>📊 Static:</strong> Matplotlib PNG images matching 686.ipynb styling (click to enlarge)</li>
+                    <li><strong>🔄 Interactive:</strong> Plotly charts with zoom, pan, hover details, and data exploration</li>
+                </ul>
+                Use the buttons in each chart header to switch between modes!
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q1: MITRE ATT&CK – High/Critical Alerts by Tactic
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq1mitretactic"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq1mitretactic"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq1mitretactic">
+                    <img src="charts/q1_mitre_tactic.png" alt="Q1: MITRE ATT&CK – High/Critical Alerts by Tactic" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq1mitretactic" style="display: none;">
+                    <iframe src="charts/q1_mitre_tactic_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq1mitretactic() {
+                        document.getElementById('staticq1mitretactic').style.display = 'block';
+                        document.getElementById('interactiveq1mitretactic').style.display = 'none';
+                    }
+                    function showInteractiveq1mitretactic() {
+                        document.getElementById('staticq1mitretactic').style.display = 'none';
+                        document.getElementById('interactiveq1mitretactic').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q2: Asset Risk – Normalized Alert Score
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq2assetrisk"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq2assetrisk"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq2assetrisk">
+                    <img src="charts/q2_asset_risk.png" alt="Q2: Asset Risk – Normalized Alert Score" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq2assetrisk" style="display: none;">
+                    <iframe src="charts/q2_asset_risk_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq2assetrisk() {
+                        document.getElementById('staticq2assetrisk').style.display = 'block';
+                        document.getElementById('interactiveq2assetrisk').style.display = 'none';
+                    }
+                    function showInteractiveq2assetrisk() {
+                        document.getElementById('staticq2assetrisk').style.display = 'none';
+                        document.getElementById('interactiveq2assetrisk').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q3: Detection Rules – False Positive Analysis
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq3falsepositives"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq3falsepositives"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq3falsepositives">
+                    <img src="charts/q3_false_positives.png" alt="Q3: Detection Rules – False Positive Analysis" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq3falsepositives" style="display: none;">
+                    <iframe src="charts/q3_false_positives_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq3falsepositives() {
+                        document.getElementById('staticq3falsepositives').style.display = 'block';
+                        document.getElementById('interactiveq3falsepositives').style.display = 'none';
+                    }
+                    function showInteractiveq3falsepositives() {
+                        document.getElementById('staticq3falsepositives').style.display = 'none';
+                        document.getElementById('interactiveq3falsepositives').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q4: Department Risk Density – Quadrant Analysis
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq4deptrisk"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq4deptrisk"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq4deptrisk">
+                    <img src="charts/q4_dept_risk.png" alt="Q4: Department Risk Density – Quadrant Analysis" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq4deptrisk" style="display: none;">
+                    <iframe src="charts/q4_dept_risk_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq4deptrisk() {
+                        document.getElementById('staticq4deptrisk').style.display = 'block';
+                        document.getElementById('interactiveq4deptrisk').style.display = 'none';
+                    }
+                    function showInteractiveq4deptrisk() {
+                        document.getElementById('staticq4deptrisk').style.display = 'none';
+                        document.getElementById('interactiveq4deptrisk').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q5: Incident Response Timing – MTTD/MTTC/MTTR
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq5mttmetrics"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq5mttmetrics"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq5mttmetrics">
+                    <img src="charts/q5_mtt_metrics.png" alt="Q5: Incident Response Timing – MTTD/MTTC/MTTR" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq5mttmetrics" style="display: none;">
+                    <iframe src="charts/q5_mtt_metrics_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq5mttmetrics() {
+                        document.getElementById('staticq5mttmetrics').style.display = 'block';
+                        document.getElementById('interactiveq5mttmetrics').style.display = 'none';
+                    }
+                    function showInteractiveq5mttmetrics() {
+                        document.getElementById('staticq5mttmetrics').style.display = 'none';
+                        document.getElementById('interactiveq5mttmetrics').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q6: Threat Actor Analysis – Motivation & Sophistication
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq6threatactors"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq6threatactors"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq6threatactors">
+                    <img src="charts/q6_threat_actors.png" alt="Q6: Threat Actor Analysis – Motivation & Sophistication" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq6threatactors" style="display: none;">
+                    <iframe src="charts/q6_threat_actors_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq6threatactors() {
+                        document.getElementById('staticq6threatactors').style.display = 'block';
+                        document.getElementById('interactiveq6threatactors').style.display = 'none';
+                    }
+                    function showInteractiveq6threatactors() {
+                        document.getElementById('staticq6threatactors').style.display = 'none';
+                        document.getElementById('interactiveq6threatactors').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q7: Network Traffic & IP Analysis – Allowed vs Blocked
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq7networktraffic"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq7networktraffic"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq7networktraffic">
+                    <img src="charts/q7_network_traffic.png" alt="Q7: Network Traffic & IP Analysis – Allowed vs Blocked" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq7networktraffic" style="display: none;">
+                    <iframe src="charts/q7_network_traffic_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq7networktraffic() {
+                        document.getElementById('staticq7networktraffic').style.display = 'block';
+                        document.getElementById('interactiveq7networktraffic').style.display = 'none';
+                    }
+                    function showInteractiveq7networktraffic() {
+                        document.getElementById('staticq7networktraffic').style.display = 'none';
+                        document.getElementById('interactiveq7networktraffic').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+            <div class="chart-item">
+                <div class="chart-title">
+                    Q8: Alert Escalation Rate by Severity
+                    <span style="float: right; font-size: 0.9em;">
+                        <button onclick="showStaticq8escalation"
+                                style="padding: 5px 15px; margin-left: 10px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            📊 Static
+                        </button>
+                        <button onclick="showInteractiveq8escalation"
+                                style="padding: 5px 15px; cursor: pointer; background: white; color: #667eea; border: 2px solid white; border-radius: 4px; font-weight: bold;">
+                            🔄 Interactive
+                        </button>
+                    </span>
+                </div>
+                <div id="staticq8escalation">
+                    <img src="charts/q8_escalation.png" alt="Q8: Alert Escalation Rate by Severity" class="chart-image" onclick="window.open(this.src)">
+                </div>
+                <div id="interactiveq8escalation" style="display: none;">
+                    <iframe src="charts/q8_escalation_interactive.html" style="width: 100%; height: 650px; border: none;"></iframe>
+                </div>
+                <script>
+                    function showStaticq8escalation() {
+                        document.getElementById('staticq8escalation').style.display = 'block';
+                        document.getElementById('interactiveq8escalation').style.display = 'none';
+                    }
+                    function showInteractiveq8escalation() {
+                        document.getElementById('staticq8escalation').style.display = 'none';
+                        document.getElementById('interactiveq8escalation').style.display = 'block';
+                    }
+                </script>
+            </div>
+
+        </div>
+
+        <footer>
+            <p><strong>MIS686 Enterprise Database Management - Term Project</strong></p>
+            <p>Enterprise Cybersecurity Incident & Threat Intelligence System</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                All charts generated with Matplotlib matching 686.ipynb styling
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

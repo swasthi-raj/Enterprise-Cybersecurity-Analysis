@@ -1,0 +1,18 @@
+# Database Connectivity
+mysql-connector-python==8.2.0
+# Use psycopg2-binary==2.9.9 if using PostgreSQL instead
+
+# Data Analysis and Manipulation
+pandas==2.1.4
+numpy==1.26.2
+
+# Data Visualization
+matplotlib==3.8.2
+seaborn==0.13.0
+plotly==5.18.0
+
+# Optional: Environment variables management
+python-dotenv==1.0.0
+
+# Optional: Progress bars for data loading
+tqdm==4.66.1

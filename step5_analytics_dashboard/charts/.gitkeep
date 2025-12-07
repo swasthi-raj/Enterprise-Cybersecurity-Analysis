@@ -1,0 +1,4 @@
+# Keep chart files in this directory
+*.png
+*.jpg
+*.pdf

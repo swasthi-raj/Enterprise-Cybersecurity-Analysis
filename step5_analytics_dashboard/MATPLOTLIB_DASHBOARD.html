@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDM Project Dashboard - Syntax Soldiers</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+        
+        header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            margin-bottom: 20px;
+        }
+        
+        header .info {
+            font-size: 1em;
+            opacity: 0.85;
+            margin-top: 15px;
+        }
+        
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-bottom: 4px solid #dee2e6;
+        }
+        
+        .metric {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .metric:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .metric-value {
+            font-size: 3em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            font-size: 1.1em;
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .content {
+            padding: 50px 40px;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 6px solid #0c5460;
+            color: #0c5460;
+            padding: 25px 30px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .info-box h3 {
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        .chart-section {
+            margin-bottom: 60px;
+            border: 3px solid #e9ecef;
+            border-radius: 15px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+            transition: all 0.3s ease;
+        }
+        
+        .chart-section:hover {
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+        }
+        
+        .chart-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 35px;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+        
+        .chart-img {
+            width: 100%;
+            display: block;
+            background: white;
+            padding: 20px;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, #343a40 0%, #212529 100%);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        footer p {
+            margin: 12px 0;
+            font-size: 1.1em;
+        }
+        
+        .highlight {
+            color: #667eea;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Enterprise Cybersecurity Incident & Threat Intelligence Analysis</h1>
+            <p class="info">
+                <strong>Team:</strong> Syntax Soldiers | 
+                <strong>Members:</strong> Swasthika Rajendran, Moses Kanagaraj, Riya Gupta
+            </p>
+            <p class="info">
+                <strong>Database:</strong> AWS RDS MySQL 8.4.7 | 
+                <strong>Server:</strong> soc-db-instance.us-east-1.rds.amazonaws.com
+            </p>
+            <p class="info">
+                MIS686 Term Project | Generated: December 06, 2025 at 06:48 PM
+            </p>
+        </header>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value">8</div>
+                <div class="metric-label">Analytical Questions</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">8</div>
+                <div class="metric-label">Matplotlib Charts</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">14</div>
+                <div class="metric-label">Database Tables</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value">AWS</div>
+                <div class="metric-label">Cloud RDS</div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="info-box">
+                <h3>🎯 Dashboard Features</h3>
+                <p><strong>High-Quality PNG Charts:</strong> All visualizations generated with Matplotlib at 300 DPI resolution</p>
+                <p><strong>Connected to AWS RDS:</strong> Real-time data from production MySQL database</p>
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q1: Departmental Risk Density – Quadrant Analysis</div>
+                <img src="charts/q1_department_risk.png" class="chart-img" alt="Q1 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q2: Incident Response Timing – MTTD/MTTC/MTTR Analysis</div>
+                <img src="charts/q2_mttd_mttc_mttr.png" class="chart-img" alt="Q2 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q3: Threat Actor Mapping – Motivation & Sophistication</div>
+                <img src="charts/q3_threat_actors.png" class="chart-img" alt="Q3 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q4: Network Traffic Analysis – Traffic Breakdown & Alerts</div>
+                <img src="charts/q4_network_traffic.png" class="chart-img" alt="Q4 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q5: Alert Escalation Rate – Total vs Escalated by Severity</div>
+                <img src="charts/q5_escalation_rate.png" class="chart-img" alt="Q5 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q6: User Alert & Incident Rates by Privilege Level</div>
+                <img src="charts/q6_user_privilege.png" class="chart-img" alt="Q6 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q7: IOC Confidence & Impact Analysis</div>
+                <img src="charts/q7_ioc_analysis.png" class="chart-img" alt="Q7 Chart">
+            </div>
+
+            <div class="chart-section">
+                <div class="chart-header">Q8: Temporal Alert Spike Detection – 24-Hour Cycle</div>
+                <img src="charts/q8_temporal_spikes.png" class="chart-img" alt="Q8 Chart">
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>MIS686 Enterprise Database Management - Term Project</strong></p>
+            <p>Enterprise Cybersecurity Incident & Threat Intelligence System</p>
+            <p style="margin-top: 20px;">
+                All visualizations generated with <span class="highlight">Matplotlib</span><br>
+                Connected to <span class="highlight">AWS RDS MySQL 8.4.7</span> Production Database
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

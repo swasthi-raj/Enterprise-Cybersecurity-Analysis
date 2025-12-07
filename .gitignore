@@ -1,0 +1,59 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environment variables
+.env
+
+# Project specific
+step5_analytics_dashboard/charts/*.png
+step5_analytics_dashboard/charts/*.jpg
+step5_analytics_dashboard/charts/*.pdf
+!step5_analytics_dashboard/charts/.gitkeep
+
+# Documentation builds
+docs/_build/
+
+# Database backups
+*.sql.backup
+*.dump
